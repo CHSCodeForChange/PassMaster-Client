@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators, FormsModule} from '@angular/forms';
 import {AuthenticationService} from '../services/authentication.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {first} from 'rxjs/operators';
+//import { toast } from 'angular2-materialize';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // Go to library if they are logged in
     if (this.authService.loggedIn()) {
-      this.router.navigate(['library']);
+      this.router.navigate(['admin-dash']);
     }
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/library';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/admin-dash';
   }
 
   // convenience getter for easy access to form fields
@@ -47,10 +48,10 @@ export class LoginComponent implements OnInit {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       if (this.loginForm.controls.username.errors.required) {
-        //M.toast({html: 'Username is required'});
+        //toast({html: 'Username is required'});
       }
       if (this.loginForm.controls.password.errors.required) {
-        //M.toast({html: 'Password is required'});
+        //toast({html: 'Password is required'});
       }
       return;
     }
@@ -66,7 +67,8 @@ export class LoginComponent implements OnInit {
         //   this.alertService.error(error);
         //   this.loading = false;
         // }
-        );
+      );
   }
 
 }
+

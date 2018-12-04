@@ -7,8 +7,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthenticationService} from './services/authentication.service';
 import {StudentService} from './services/student.service';
 import {AdminDashComponent} from "./admin-dash/admin-dash.component";
-import {AppRoutingModule} from "./app-routing.module";
-
+import {RoutingModule} from "./routing.module";
+//import { MaterializeModule } from "angular2-materialize";
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +20,8 @@ import {AppRoutingModule} from "./app-routing.module";
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AppRoutingModule,
+    RoutingModule,
+    //MaterializeModule
   ],
   providers: [
     AuthenticationService,

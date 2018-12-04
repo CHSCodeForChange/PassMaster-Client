@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map, tap} from 'rxjs/operators';
 
+
 @Injectable()
 export class AuthenticationService {
-  url = 'https://slat-backend.herokuapp.com/api-token-auth/';
+  url = 'https://passmaster.herokuapp.com/rest/login/';
 
   constructor(private http: HttpClient) {
   }
