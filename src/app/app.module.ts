@@ -5,7 +5,7 @@ import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthenticationService} from './services/authentication.service';
-import {StudentService} from './services/student.service';
+import {PassmasterService} from './services/passmaster.service';
 import {AdminDashComponent} from "./admin-dash/admin-dash.component";
 import {RoutingModule} from "./routing.module";
 //import { MaterializeModule } from "angular2-materialize";
@@ -25,7 +25,7 @@ import {RoutingModule} from "./routing.module";
   ],
   providers: [
     AuthenticationService,
-    StudentService],
+    PassmasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
