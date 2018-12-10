@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup, Validators, FormsModule} from '@angular/forms';
 import {AuthenticationService} from '../services/authentication.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {first} from 'rxjs/operators';
+import {PassmasterService} from "../services/passmaster.service";
+import {User} from "../classes/User";
+
 //import { toast } from 'angular2-materialize';
 
 @Component({
@@ -20,7 +23,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthenticationService) {
+    private authService: AuthenticationService,
+    private passmaster: PassmasterService) {
   }
 
   ngOnInit() {
@@ -48,10 +52,10 @@ export class LoginComponent implements OnInit {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       if (this.loginForm.controls.username.errors.required) {
-        //toast({html: 'Username is required'});
+        console.log('username required');
       }
       if (this.loginForm.controls.password.errors.required) {
-        //toast({html: 'Password is required'});
+        console.log('password is required');
       }
       return;
     }
@@ -61,13 +65,14 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          console.log('we passed the first hurdle');
           this.router.navigate([this.returnUrl]);
-        }
-        // error => {
-        //   this.alertService.error(error);
-        //   this.loading = false;
-        // }
-      );
+          this.passmaster.getUser()
+            .subscribe(user => {
+              console.log('all of the login stuff is complete');
+              localStorage.setItem('user_type', user.type);
+            });
+        });
   }
 
 }

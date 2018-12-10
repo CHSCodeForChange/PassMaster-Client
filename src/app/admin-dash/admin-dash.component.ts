@@ -9,17 +9,17 @@ import {print} from "util";
   styleUrls: ['./admin-dash.component.css']
 })
 export class AdminDashComponent implements OnInit {
-  Users: User[];
+  students: User[];
 
   constructor(private api: PassmasterService) { }
 
   ngOnInit() {
-    this.getStudents();
+    this.getUsers();
   }
 
-  getStudents(): void {
+  getUsers(): void {
     this.api.getStudents()
-      .subscribe(Users => this.Users = Users);
+      .subscribe(Users => this.students = Users);
 
     console.log('Users are ', this.students);
   }
