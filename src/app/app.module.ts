@@ -8,12 +8,21 @@ import {AuthenticationService} from './services/authentication.service';
 import {PassmasterService} from './services/passmaster.service';
 import {AdminDashComponent} from "./admin-dash/admin-dash.component";
 import {RoutingModule} from "./routing.module";
+import {LoginGuard} from "./routing-gaurds/LoginGuard";
+import {AdministratorGuard} from "./routing-gaurds/AdministratorGuard";
+import { StudentDashComponent } from './student-dash/student-dash.component';
+import { PassCardComponent } from './pass-card/pass-card.component';
+import {PassTypeFilter} from "./filters/PassTypeFilter";
+
 //import { MaterializeModule } from "angular2-materialize";
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AdminDashComponent
+    AdminDashComponent,
+    StudentDashComponent,
+    PassCardComponent,
+    PassTypeFilter
   ],
   imports: [
     BrowserModule,
@@ -25,7 +34,9 @@ import {RoutingModule} from "./routing.module";
   ],
   providers: [
     AuthenticationService,
-    PassmasterService],
+    PassmasterService,
+    LoginGuard,
+    AdministratorGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
