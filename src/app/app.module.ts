@@ -13,6 +13,7 @@ import {AdministratorGuard} from "./routing-gaurds/AdministratorGuard";
 import { StudentDashComponent } from './student-dash/student-dash.component';
 import { PassCardComponent } from './pass-card/pass-card.component';
 import {PassTypeFilter} from "./filters/PassTypeFilter";
+import { PassFormComponent } from './pass-form/pass-form.component';
 
 //import { MaterializeModule } from "angular2-materialize";
 @NgModule({
@@ -22,7 +23,8 @@ import {PassTypeFilter} from "./filters/PassTypeFilter";
     AdminDashComponent,
     StudentDashComponent,
     PassCardComponent,
-    PassTypeFilter
+    PassTypeFilter,
+    PassFormComponent
   ],
   imports: [
     BrowserModule,
