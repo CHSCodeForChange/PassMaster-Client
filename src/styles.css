@@ -1,1 +1,207 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
+@import url("https://use.fontawesome.com/releases/v5.1.0/css/all.css");
+
+/* General */
+h1 {
+  color: white;
+  text-align: center;
+}
+
+h5 {
+  font-weight: 300;
+}
+
+div.col {
+
+  text-align: center;
+  align: left;
+  max-width:25%;
+}
+div.col2 {
+
+  text-align: center;
+  align: right;
+  max-width:25%;
+}
+
+
+
+.caption {
+  display: block;
+  color:white;
+}
+
+.btn {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.plus {
+  color: white;
+  text-decoration: none !important;
+}
+
+.plus:hover {
+  color: #eee;
+}
+
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.input-wrapper {
+  margin: 10%;
+}
+
+.alert {
+  width: 50vw;
+  border-radius: 25px;
+  color: white;
+}
+
+/* Login */
+.login-input input {
+  border-radius: 250px !important;
+  background: #f6b26b;
+  background-color: #f6b26bff !important;
+  border-style: solid !important;
+  width: 100%;
+  border-color: white !important;
+  margin-top: 1.5vh;
+  color: white !important;
+  -webkit-padding-start: 3%;
+  outline: none;
+}
+
+input:-webkit-autofill {
+  -webkit-padding-start: 5%;
+  -webkit-text-fill-color: white !important;
+  -webkit-box-shadow: inset 0 0 0px 9999px #f6b26bff;
+}
+
+/* Home pages */
+.dropdown-toggle::after {
+  display: none;
+
+}
+
+/* .card-container::after {
+	content: "";
+	display: table;
+	clear: both;
+} */
+
+.card {
+  /* margin: 0 auto; /* Added */
+  margin-left: 10%;
+  margin-right: 10%;
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+/*
+.card-container {
+	margin-top: 20px;
+	width: 100vw;
+	padding-left: 96px;
+    padding-right: 96px;
+    padding-bottom: 0;
+    text-align: center;
+    overflow: auto;
+} */
+
+.card-columns {
+  /* margin-top: 20px;
+	width: auto;
+	padding-left: 0%;
+    padding-right: 0%;
+    padding-bottom: 0;
+    text-align: center;
+    overflow:auto;
+    bottom:0;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px; */
+
+  margin-left: 10% !important;
+  margin-right: 10% !important;
+}
+
+
+
+
+.dropdown {text-align:center; overflow:visible;}
+.button, .dropdown-menu {margin:10px auto; overflow:visible;}
+.dropdown-menu {width:250px; left:50%; margin-left:-100px; overflow:visible;}
+
+.card-form {
+  border-radius: 20px;
+  margin-bottom: 48px;
+}
+
+.select2-container {
+  width: 100% !important;
+}
+
+.pass-card {
+  border-radius: 20px;
+  /* height: 45vh; */
+  /* width: 20vw !important; */
+  /* float: left; */
+  text-align: left;
+  width: 90%;
+  right: 1%;
+}
+
+/* For rounded cards to not be jank*/
+.list-group-item {
+  background: none;
+}
+
+.select2-selection {
+  min-height: 38px !important;
+}
+
+.pass-type {
+  text-align: left;
+  margin-left: 48px;
+  margin-right: 48px;
+  margin-top: 24px;
+}
+
+.btn-round {
+  border-radius: 25px;
+}
+
+.center-vert {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  margin-top: 2%;
+  display: grid;
+  grid-gap: 1%;
+  grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+  vertical-align: baseline;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: #F29D39;
+}
+
+@media screen and (min-width: 2000px) and (max-width: 3000px) {
+  .pass-card {
+    left: 2px;
+  }
+}

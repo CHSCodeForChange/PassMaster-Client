@@ -1,40 +1,19 @@
 <body>
 <div class="center-vert">
-  <h1 class="display-1">Login</h1>
+  <h1 class="display-1" style="font-size: 15vh">Login</h1>
   <div class="center">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="width: 27vw">
       <div class="center row login-input">
-        <div class="form-group input-field">
-          <input type="text" id="username" formControlName="username" class="form-control"
-                 [ngClass]="{ 'is-invalid': submitted && f.username.errors }" autofocus/>
-          <label for="username">Username</label>
-        </div>
-        <div class="form-group input-field">
-          <input type="password" id="password" formControlName="password" class="form-control"
-                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
-          <label for="password">Password</label>
-        </div>
-        <div class="form-group">
-          <div class="center"><button [disabled]="loading" type="submit" class="btn btn-info btn-block btn-round mt-3 waves-effect">Login</button></div>
-          <div class="center"><a href="/accounts/signup" class="btn btn-link btn-block btn-round mt-2">Sign up</a></div>
-          <img *ngIf="loading"
-               src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-        </div>
+        <input type="text" id="username" formControlName="username" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.username.errors }" autofocus/>
+        <input type="password" id="password" formControlName="password" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
       </div>
+      <div class="center">
+        <button type="submit" class="btn btn-info btn-block btn-round mt-3">Login</button>
+      </div>
+      <div class="center"><a href="/accounts/signup" class="btn btn-link btn-block btn-round mt-2">Sign up</a></div>
     </form>
   </div>
 </div>
 </body>
-<!--<script>-->
-<!--{% if form.errors %}-->
-<!--M.toast({html: 'Your username and password didn\'t match. Please try again.'});-->
-<!--{% endif %}-->
-<!--{% if next %}-->
-<!--{% if user.is_authenticated %}-->
-<!--M.toast({html: 'Your account doesn\'t have access to this page. To proceed, please login with an account that has access.'});-->
-<!--{% else %}-->
-<!--M.toast({html: 'Please login to see this page.'});-->
-<!--{% endif %}-->
-<!--{% endif %}-->
-<!--</script>-->
-<!--{% endblock %}-->
