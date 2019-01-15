@@ -9,7 +9,7 @@ export class AdministratorGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(localStorage.getItem('user_type') == 'Administrator') {
+    if(localStorage.getItem('user_type') == '3') {
       return true;
     }else {
       this.router.navigate(['/login']);

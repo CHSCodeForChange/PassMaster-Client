@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
           this.passmaster.getUser()
             .subscribe(user => {
-              console.log('all of the login stuff is complete');
+              console.log('all of the login stuff is complete', user.type, user);
               localStorage.setItem('user_type', user.type);
             });
         });

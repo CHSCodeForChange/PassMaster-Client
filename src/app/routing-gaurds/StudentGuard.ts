@@ -9,7 +9,7 @@ export class StudentGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(localStorage.getItem('user_type') == 'Student') {
+    if(localStorage.getItem('user_type') == '1') {
       return true;
     } else {
       this.router.navigate(['/login']);

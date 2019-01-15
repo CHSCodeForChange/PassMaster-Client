@@ -1,0 +1,37 @@
+{% load standard_tags %}
+<div class="pass-card card">
+  <div class="card-body">
+    {% if pass.teacherpass %}
+    <h5 class="card-title"><i class="fas fa-user-alt"></i> {{ pass.teacherpass.destinationTeacher.profile.name }}</h5>
+    {% elif pass.srtpass %}
+    {% if pass.srtpass.session == '1' %}
+    <h5 class="card-title"><i class="fas fa-hourglass-start"></i> {{ pass.srtpass.destinationTeacher.profile.name }}</h5>
+    {% elif pass.srtpass.session == '2' %}
+    <h5 class="card-title"><i class="fas fa-hourglass-end"></i> {{ pass.srtpass.destinationTeacher.profile.name }}</h5>
+    {% elif pass.srtpass.session == '3' %}
+    <h5 class="card-title"><i class="fas fa-hourglass"></i> {{ pass.srtpass.destinationTeacher.profile.name }}</h5>
+    {% endif %}
+    {% elif pass.locationpass %}
+    <h5 class="card-title"><i class="fas fa-map-marker-alt"></i> {{ pass.locationpass.location }}</h5>
+    {% endif %}
+    <h6 class="card-subtitle mb-2 text-muted">{{ pass.date|date:"N j Y" }}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">
+      {{ pass.startTimeRequested|date:"P" }}
+      - {{ pass.endTimeRequested|date:"P" }}
+    </h6>
+    <p class="card-text">{{ pass.description }}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    {% if not pass.srtpass %}
+    {% if pass.timeLeftOrigin is not None %}
+    <li class="list-group-item">Time Left: {{ pass.timeLeftOrigin|default:"N/A" }}</li>
+    {% endif %}
+    {% if pass.timeArrivedDestination is not None %}
+    <li class="list-group-item">Time Arrived: {{ pass.timeArrivedDestination|default:"N/A" }}</li>
+    {% endif %}
+    {% else %}
+    <li class="list-group-item">{{ pass.srtpass.sessionStr }}</li>
+    {% endif %}
+    <li class="list-group-item">Origin Teacher: {{ pass.originTeacher.profile.name }}</li>
+  </ul>
+</div>
