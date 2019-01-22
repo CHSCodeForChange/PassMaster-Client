@@ -3,7 +3,7 @@ import {User} from '../classes/User';
 import {Pass} from '../classes/Pass';
 
 @Component({
-  selector: 'app-pass-form',
+  selector: 'pass-form',
   templateUrl: './pass-form.component.html',
   styleUrls: ['./pass-form.component.css']
 })

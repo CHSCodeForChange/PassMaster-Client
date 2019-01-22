@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Pass} from "../classes/Pass";
 
 @Component({
-  selector: 'app-pass-card',
-  templateUrl: './pass-card.component.html',
-  styleUrls: ['./pass-card.component.css']
+    selector: 'pass-card',
+    templateUrl: './pass-card.component.html',
+    styleUrls: ['./pass-card.component.css']
 })
 export class PassCardComponent implements OnInit {
-  pass: Pass;
+    @Input() pass: Pass;
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

@@ -1,92 +1,83 @@
-
 <body>
 <h1 class="display-1">Passes
-  <div class="expand" style="display: inline-block">
-    <a class="plus" data-toggle="collapse" href="#collapseRequestPassForm" aria-pressed="true" role="button" aria-expanded="false" aria-controls="collapseRequestPassForm">+</a>
-  </div>
+    <div class="expand" style="display: inline-block">
+        <a class="plus" data-toggle="collapse" href="#collapseRequestPassForm" aria-pressed="true" role="button"
+           aria-expanded="false" aria-controls="collapseRequestPassForm">+</a>
+    </div>
 </h1>
 <div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10 collapse" id="collapseRequestPassForm">
-    {% include 'student/fragments/request_pass_fragment.html' %}
-  </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-10 collapse" id="collapseRequestPassForm">
+        <pass-form></pass-form>
+    </div>
 </div>
 
 <script> var w = window.screen.width </script>
 
-{% if request|is_pc %}
 <div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-3">
-    <a class="btn btn-secondary btn-block btn-round" id="active-button" href="#active">Active</a>
-  </div>
-  <div class="col-md-4" style="padding-left:4%; padding-right:4%">
-    <a class="btn btn-secondary btn-block btn-round" id="pending-button" href="#pending">Pending</a>
-  </div>
-  <div class="col-md-3">
-    <a class="btn btn-secondary btn-block btn-round" id="old-button" href="#old">Old</a>
-  </div>
-  <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+        <a class="btn btn-secondary btn-block btn-round" id="active-button" href="#active">Active</a>
+    </div>
+    <div class="col-md-4" style="padding-left:4%; padding-right:4%">
+        <a class="btn btn-secondary btn-block btn-round" id="pending-button" href="#pending">Pending</a>
+    </div>
+    <div class="col-md-3">
+        <a class="btn btn-secondary btn-block btn-round" id="old-button" href="#old">Old</a>
+    </div>
+    <div class="col-md-1"></div>
 
 </div>
-{% else %}
-<div class="dropdown show">
-  <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Menu
-  </a>
-
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" id="active-button" href="#active">Active</a>
-    <a class="dropdown-item" id="pending-button" href="#pending">Pending</a>
-    <a class="dropdown-item" id="old-button" href="#old">Old</a>
-  </div>
-</div>
-{% endif %}
-
 
 <div id="active-fragment" style="display: none;">
-  {% if active %}
-  <div class="grid">
-    {% for pass in active %}
-    {% include 'student/fragments/student_pass_fragment.html' %}
-    {% endfor %}
-    <app-pass-card *ngFor="let p of pass | PassTypeFilter:'active'"></app-pass-card>
-  </div>
-  {% else %}
-  <h1 class="pass-type text-center mt-5">No active passes. Send your teacher a request for one using the plus symbol above. The passes will display in the "pending" section until your teacher approves the pass.</h1>
-  {% endif %}
+    <div class="grid" *ngIf="activePasses; else no-active">
+        <pass-card *ngFor="let p of activePasses" [pass]="p"></pass-card>
+    </div>
+    <ng-template #no-active><h1 class="pass-type text-center mt-5">No active passes. Send your teacher a request for one
+        using the plus symbol
+        above. The passes will display in the "pending" section until your teacher approves the pass.</h1></ng-template>
 </div>
 
 <div id="pending-fragment" style="display: none;">
-  {% include 'student/fragments/pending_fragment.html' %}
+    <div class="grid" *ngIf="pendingPasses; else no-pending">
+        <pass-card *ngFor="let p of pendingPasses" [pass]="p"></pass-card>
+    </div>
+    <ng-template #no-pending><h1 class="pass-type text-center mt-5">No pending passes. Send your teacher a request for
+        one
+        using the plus symbol
+        above. The passes will display in the "pending" section until your teacher approves the pass.</h1></ng-template>
 </div>
 
 <div id="old-fragment" style="display: none;">
-  {% include 'student/fragments/old_fragment.html' %}
+    <div class="grid" *ngIf="oldPasses; else no-old">
+        <pass-card *ngFor="let p of oldPasses" [pass]="p"></pass-card>
+    </div>
+    <ng-template #no-old><h1 class="pass-type text-center mt-5">No pending passes. Send your teacher a request for
+        one
+        using the plus symbol
+        above. The passes will display in the "pending" section until your teacher approves the pass.</h1></ng-template>
 </div>
-
 </body>
 
-{% include 'scripts.html' %}
-<script src="{% static 'js/tabs.js' %}"></script>
+<script src="../static/tabs.js"></script>
 <script>
-  $(document).ready(function() {
-    var expanded = false;
-    $('.expand').click(function() {
-      if (expanded){
-        $(this).css({
-          'transform' : 'rotate('+ 0 +'deg)',
-          'transition' : 'transform 0.3s ease',
-          'transform-origin' : '50% 60%'
+    $(document).ready(function () {
+        var expanded = false;
+        $('.expand').click(function () {
+            if (expanded) {
+                $(this).css({
+                    'transform': 'rotate(' + 0 + 'deg)',
+                    'transition': 'transform 0.3s ease',
+                    'transform-origin': '50% 60%'
+                });
+            } else {
+                $(this).css({
+                    'transform': 'rotate(' + 135 + 'deg)',
+                    'transition': 'transform 0.3s ease',
+                    'transform-origin': '50% 60%'
+                });
+            }
+            expanded = !expanded;
         });
-      } else {
-        $(this).css({
-          'transform' : 'rotate('+ 135 +'deg)',
-          'transition' : 'transform 0.3s ease',
-          'transform-origin' : '50% 60%'
-        });
-      }
-      expanded = !expanded;
     });
-  });
 </script>
