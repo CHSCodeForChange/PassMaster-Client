@@ -1,6 +1,3 @@
-{{ request_form.media.css }}
-
-{% load static %}
 
 <div class="card card-body card-form" style="width: 100%;">
   <div class="row mb-4">
@@ -18,8 +15,7 @@
     <div>{{ pass.type }}</div>
     <div class="row">
       <div class="col-md-6">
-        <div id="id_destinationTeacher" *ngif="pass.type == 'TeacherPass'">
-          {# Destination Teacher Field #}
+        <div id="id_destinationTeacher" *ngIf="pass.type == 'TeacherPass'">
           <div class="form-label" id="destinationTeacherLabel">Destination Teacher</div>
           <div>
             <select class="form-control" id="id_destinationTeacher"
@@ -29,8 +25,7 @@
             </select>
           </div>
         </div>
-        {# Location #}
-        <div id="id_location" *ngif="pass.type == 'LocationPass'">
+        <div id="id_location" *ngIf="pass.type == 'LocationPass'">
           <div class="form-label" id="locationLabel">Location Label</div>
           <div>
             <select class="form-control" id="id_location"
@@ -42,7 +37,6 @@
         </div>
       </div>
       <div class="col-md-6">
-        {# Origin Teacher Field #}
         <div class="form-label" id="originTeacherLabel">Origin Teacher</div>
         <div>
           <select class="form-control" id="id_originTeacher"
@@ -53,14 +47,13 @@
         </div>
       </div>
     </div>
-    {# Start and end time #}
     <div class="row">
       <div class="col-md-4">
         <div class="form-label">Date</div>
         <input type="date" name="date" class="form-control" id="id_date" [(ngModel)]="pass.date" required>
       </div>
 
-      <div *ngif="pass.type == 'LocationPass' && pass.type == 'TeacherPass'">
+      <div *ngIf="pass.type == 'LocationPass' && pass.type == 'TeacherPass'">
         <div class="col-md-4" id="start-time">
           <div class="form-label">Start Time</div>
           <input type="time" name="start" class="form-control" id="id_start" [(ngModel)]="pass.startTimeRequested" required>
@@ -71,31 +64,20 @@
         </div>
       </div>
 
-      <div class="col-md-8" *ngif="pass.type == 'SRTPass'">
-        {# SRT Session #}
+      <div class="col-md-8" *ngIf="pass.type == 'SRTPass'">
         <div class="form-label" id="sessionLabel">Session</div>
         <div> {{ request_form.session }} </div>
       </div>
     </div>
 
-    {# Reason #}
     <div class="form-label">Description</div>
     <textarea name="reason" cols="40" rows="3" type="text" class="form-control" maxlength="240" id="id_reason" [(ngModel)]="pass.description"></textarea>
 
-    {# Submit button #}
     <div class="center mt-3">
       <button class="btn btn-info btn-block" type="submit">Create</button>
     </div>
   </form>
 </div>
-
-
-{% block footer %}
-<script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
-{% endblock %}
-
-{{ request_form.media.js }}
-
 
 <script>
   $('#set_type_teacher').click(function(e) {
@@ -145,7 +127,7 @@
   });
   $(document).ready(function() {
     var d = new Date();
-    {# (d.getMinutes()<10?'0':'') adds a leading zero if the minutes are less than ten #}
+    //{# (d.getMinutes()<10?'0':'') adds a leading zero if the minutes are less than ten #}
     $('#id_start').val(d.getHours()+":"+(d.getMinutes()<10?'0':'')+d.getMinutes());
     $('#id_end').val(d.getHours()+1+":"+(d.getMinutes()<10?'0':'')+d.getMinutes());
     // {# Hide things that should be hidden initially #}

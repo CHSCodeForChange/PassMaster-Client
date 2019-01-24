@@ -1,4 +1,3 @@
-{% load standard_tags %}
 <div class="pass-card card">
     <div class="card-body">
         <h5 class="card-title"><i
@@ -12,16 +11,16 @@
         <p class="card-text">{{ pass.description }}</p>
     </div>
     <ul class="list-group list-group-flush">
-        <li *ng-if="pass.timeLeftOrigin != 'null'" class="list-group-item">Time
+        <li *ngIf="pass.timeLeftOrigin != 'null'" class="list-group-item">Time
             Left: {{ pass.timeLeftOrigin| date:'shortTime' }}</li>
-        <li *ng-if="pass.timeArrivedDestination != 'null'" class="list-group-item">Time
+        <li *ngIf="pass.timeArrivedDestination != 'null'" class="list-group-item">Time
             Arrived: {{ pass.timeArrivedDestination| date:'shortTime' }}</li>
-        <!--<li *ng-if="pass.timeLeftOrigin != 'null' && pass.type != 'SRTPass'" class="list-group-item">Time
+        <!--<li *ngIf="pass.timeLeftOrigin != 'null' && pass.type != 'SRTPass'" class="list-group-item">Time
             Left: {{ pass.timeLeftOrigin|default:"N/A" }}</li>
-        <li *ng-if="pass.timeArrivedDestination != 'null' && pass.type != 'SRTPass'" class="list-group-item">Time
+        <li *ngIf="pass.timeArrivedDestination != 'null' && pass.type != 'SRTPass'" class="list-group-item">Time
             Arrived: {{ pass.timeArrivedDestination|default:"N/A" }}</li>
-        <li *ng-if="pass.type == 'SRTPass'" class="list-group-item">{{ pass.srtpass.sessionStr }}</li>-->
+        <li *ngIf="pass.type == 'SRTPass'" class="list-group-item">{{ pass.srtpass.sessionStr }}</li>-->
         <li class="list-group-item">Origin
-            Teacher: {{ pass.originTeacher_info.first_name }} {{pass.originTeacher_info.last_name }}</li>
+            Teacher: {{ pass.originTeacher_info.first_name }} {{ pass.originTeacher_info.last_name }}</li>
     </ul>
 </div>
