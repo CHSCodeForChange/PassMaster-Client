@@ -1,14 +1,14 @@
 <body>
 <h1 class="display-1">Passes
     <div class="expand" style="display: inline-block">
-        <a class="plus" data-toggle="collapse" href="#collapseRequestPassForm" aria-pressed="true" role="button"
-           aria-expanded="false" aria-controls="collapseRequestPassForm">+</a>
+        <a class="plus" (click)="form_active = !form_active"
+           [attr.aria-expanded]="!form_active" aria-controls="collapseRequestPassForm">+</a>
     </div>
 </h1>
 <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-10 collapse" id="collapseRequestPassForm">
-        <pass-form></pass-form>
+    <div class="col-md-10"  *ngIf="form_active" id="collapseRequestPassForm">
+        <app-pass-form></app-pass-form>
     </div>
 </div>
 

@@ -1,8 +1,8 @@
 import {User} from "./User";
 
 export class Pass {
-  pk: number;
-  approved: boolean;
+  pk: number ;
+  approved: boolean = false;
   date: Date;
   startTimeRequested: Date;
   endTimeRequested: Date;
@@ -10,18 +10,18 @@ export class Pass {
   timeLeftOrigin: Date;
   timeArrivedDestination: Date;
 
-  student: User;
-  originTeacher: User;
+  student: number = -1;
+  originTeacher: number = -1;
 
   student_info: User; //why do we have this
   originTeacher_info: User;
 
-  description: string;
+  description: string = '';
 
-  type: string;
-  destination: string; //not too sure about this one
+  type: string = 'TeacherPass';
+  destination: string = '';
 
-  can_approve: boolean;
-  can_sign_in: boolean;
-  can_sign_out: boolean;
+  can_approve: boolean = false;
+  can_sign_in: boolean = false;
+  can_sign_out: boolean = false;
 }

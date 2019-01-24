@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Pass} from "../classes/Pass";
+import moment = require("moment");
 
 @Component({
     selector: 'pass-card',
@@ -8,8 +9,12 @@ import {Pass} from "../classes/Pass";
 })
 export class PassCardComponent implements OnInit {
     @Input() pass: Pass;
+    timeLeftOrigin: Date;
+    timeArrivedDestination: Date;
+    dateString: Date;
 
     constructor() {
+        //moment(this.pass.timeLeftOrigin, 'YYYY-MM-DD HH:mm:ss');
     }
 
     ngOnInit() {

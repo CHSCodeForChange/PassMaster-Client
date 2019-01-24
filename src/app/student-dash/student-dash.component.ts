@@ -13,6 +13,7 @@ export class StudentDashComponent implements OnInit {
     activePasses: Pass[];
     pendingPasses: Pass[];
     oldPasses: Pass[];
+    form_active: boolean = false;
 
     constructor(private api: PassmasterService) {
     }
