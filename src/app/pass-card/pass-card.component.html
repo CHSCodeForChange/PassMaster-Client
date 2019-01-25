@@ -1,26 +1,26 @@
 <div class="pass-card card">
     <div class="card-body">
         <h5 class="card-title"><i
-                class="fas fa-hourglass"></i> {{ pass.destination }}</h5>
+                class="fas fa-hourglass"></i> {{ p.destination }}</h5>
 
-        <h6 class="card-subtitle mb-2 text-muted">{{ pass.date|date:"N j Y" }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted" *ngIf="date !== undefined">{{ date|date:"EEEE, MMMM d" }}</h6>
         <h6 class="card-subtitle mb-2 text-muted">
-            {{ pass.startTimeRequested|date:"shortTime" }}
-            - {{ pass.endTimeRequested|date:"shortTime" }}
+            {{ startTimeRequested|date:"shortTime" }}
+            - {{ endTimeRequested|date:"shortTime" }}
         </h6>
-        <p class="card-text">{{ pass.description }}</p>
+        <p class="card-text">{{ p.description }}</p>
     </div>
     <ul class="list-group list-group-flush">
-        <li *ngIf="pass.timeLeftOrigin != 'null'" class="list-group-item">Time
-            Left: {{ pass.timeLeftOrigin| date:'shortTime' }}</li>
-        <li *ngIf="pass.timeArrivedDestination != 'null'" class="list-group-item">Time
-            Arrived: {{ pass.timeArrivedDestination| date:'shortTime' }}</li>
+        <li *ngIf="timeLeftOrigin !== undefined" class="list-group-item">Time
+            Left: {{ timeLeftOrigin| date:'shortTime' }}</li>
+        <li *ngIf="timeArrivedDestination !== undefined" class="list-group-item">Time
+            Arrived: {{ timeArrivedDestination| date:'shortTime' }}</li>
         <!--<li *ngIf="pass.timeLeftOrigin != 'null' && pass.type != 'SRTPass'" class="list-group-item">Time
             Left: {{ pass.timeLeftOrigin|default:"N/A" }}</li>
         <li *ngIf="pass.timeArrivedDestination != 'null' && pass.type != 'SRTPass'" class="list-group-item">Time
             Arrived: {{ pass.timeArrivedDestination|default:"N/A" }}</li>
         <li *ngIf="pass.type == 'SRTPass'" class="list-group-item">{{ pass.srtpass.sessionStr }}</li>-->
         <li class="list-group-item">Origin
-            Teacher: {{ pass.originTeacher_info.first_name }} {{ pass.originTeacher_info.last_name }}</li>
+            Teacher: {{ p.originTeacher_info.first_name }} {{ p.originTeacher_info.last_name }}</li>
     </ul>
 </div>

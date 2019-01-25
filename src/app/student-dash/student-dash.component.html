@@ -17,30 +17,33 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-3">
-        <a class="btn btn-secondary btn-block btn-round" id="active-button" href="#active">Active</a>
+        <a class="btn btn-secondary btn-block btn-round" id="active-button" (click)="active_active = !active_active"
+           [attr.aria-expanded]="!active_active" aria-controls="active-fragment">Active</a>
     </div>
     <div class="col-md-4" style="padding-left:4%; padding-right:4%">
-        <a class="btn btn-secondary btn-block btn-round" id="pending-button" href="#pending">Pending</a>
+        <a class="btn btn-secondary btn-block btn-round" id="pending-button" (click)="pending_active = !pending_active"
+           [attr.aria-expanded]="!pending_active" aria-controls="pending-fragment">Pending</a>
     </div>
     <div class="col-md-3">
-        <a class="btn btn-secondary btn-block btn-round" id="old-button" href="#old">Old</a>
+        <a class="btn btn-secondary btn-block btn-round" id="old-button" (click)="old_active = !old_active"
+           [attr.aria-expanded]="!old_active" aria-controls="old-fragment">Old</a>
     </div>
     <div class="col-md-1"></div>
 
 </div>
 
-<div id="active-fragment" style="display: none;">
-    <div class="grid" *ngIf="activePasses; else no_active">
-        <pass-card *ngFor="let p of activePasses" [pass]="p"></pass-card>
+<div id="active-fragment" *ngIf="active_active">
+    <div class="grid" *ngIf="activePasses?.length > 0; else no_active">
+        <div *ngFor="let p of activePasses"><pass-card [pass]="p"></pass-card></div>
     </div>
     <ng-template #no_active><h1 class="pass-type text-center mt-5">No active passes. Send your teacher a request for one
         using the plus symbol
         above. The passes will display in the "pending" section until your teacher approves the pass.</h1></ng-template>
 </div>
 
-<div id="pending-fragment" style="display: none;">
-    <div class="grid" *ngIf="pendingPasses; else no_pending">
-        <pass-card *ngFor="let p of pendingPasses" [pass]="p"></pass-card>
+<div id="pending-fragment" *ngIf="pending_active">
+    <div class="grid" *ngIf="pendingPasses?.length > 0; else no_pending">
+        <div *ngFor="let p of pendingPasses"><pass-card [pass]="p"></pass-card></div>
     </div>
     <ng-template #no_pending><h1 class="pass-type text-center mt-5">No pending passes. Send your teacher a request for
         one
@@ -48,9 +51,9 @@
         above. The passes will display in the "pending" section until your teacher approves the pass.</h1></ng-template>
 </div>
 
-<div id="old-fragment" style="display: none;">
-    <div class="grid" *ngIf="oldPasses; else no_old">
-        <pass-card *ngFor="let p of oldPasses" [pass]="p"></pass-card>
+<div id="old-fragment" *ngIf="old_active">
+    <div class="grid" *ngIf="oldPasses?.length > 0; else no_old">
+        <div *ngFor="let p of oldPasses"><pass-card [pass]="p"></pass-card></div>
     </div>
     <ng-template #no_old><h1 class="pass-type text-center mt-5">No pending passes. Send your teacher a request for
         one

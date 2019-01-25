@@ -67,6 +67,7 @@ export class PassmasterService {
         {'Authorization': localStorage.getItem('Authorization')}
       )
     };
+    console.log(this.http.get<Pass[]>(this.apiUrl + 'passes/?list=pending', httpOptions));
     return this.http.get<Pass[]>(this.apiUrl + 'passes/?list=pending', httpOptions);
   }
 }

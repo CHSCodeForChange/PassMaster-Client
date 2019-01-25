@@ -14,6 +14,9 @@ export class StudentDashComponent implements OnInit {
     pendingPasses: Pass[];
     oldPasses: Pass[];
     form_active: boolean = false;
+    active_active: boolean = true;
+    pending_active: boolean = false;
+    old_active: boolean = false;
 
     constructor(private api: PassmasterService) {
     }
@@ -26,22 +29,28 @@ export class StudentDashComponent implements OnInit {
 
     getActivePasses(): void {
         this.api.getActivePasses()
-            .subscribe(Pass => this.activePasses = Pass);
+            .subscribe(Pass => {
+                this.activePasses = Pass;
+                console.log('active passes are ', this.activePasses);
+            });
 
-        console.log('Passes are ', this.activePasses);
+        console.log('active passes are ', this.activePasses);
     }
 
     getPendingPasses(): void {
         this.api.getPendingPasses()
-            .subscribe(Pass => this.pendingPasses = Pass);
+            .subscribe(Pass => {
+                this.pendingPasses = Pass;
+                console.log('pending passes are ', this.pendingPasses);
 
-        console.log('Passes are ', this.pendingPasses);
+            });
     }
 
     getOldPasses(): void {
         this.api.getOldPasses()
-            .subscribe(Pass => this.oldPasses = Pass);
-
-        console.log('Passes are ', this.oldPasses);
+            .subscribe(Pass => {
+                this.oldPasses = Pass;
+                console.log('old passes are ', this.oldPasses);
+            });
     }
 }
