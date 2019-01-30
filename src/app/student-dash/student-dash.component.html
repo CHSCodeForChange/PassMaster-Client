@@ -7,80 +7,74 @@
 </h1>
 <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-10"  *ngIf="form_active" id="collapseRequestPassForm">
+    <div class="col-md-10" *ngIf="form_active" id="collapseRequestPassForm">
         <app-pass-form></app-pass-form>
     </div>
 </div>
 
-<script> var w = window.screen.width </script>
+<style>
+    .tabs .tab a {
+        color: white;
+    }
 
+    /*Black color to the text*/
+
+    .tabs .tab a:hover {
+        background-color: transparent;
+        color: #000;
+    }
+
+    /*Text color on hover*/
+
+    .tabs .tab a.active {
+        background-color: transparent;
+        color: white;
+    }
+
+    /*Background and text color when a tab is active*/
+
+    .tabs .indicator {
+        background-color: red; /*your color*/
+    }
+</style>
 <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-3">
-        <a class="btn btn-secondary btn-block btn-round" id="active-button" (click)="active_active = !active_active"
-           [attr.aria-expanded]="!active_active" aria-controls="active-fragment">Active</a>
-    </div>
-    <div class="col-md-4" style="padding-left:4%; padding-right:4%">
-        <a class="btn btn-secondary btn-block btn-round" id="pending-button" (click)="pending_active = !pending_active"
-           [attr.aria-expanded]="!pending_active" aria-controls="pending-fragment">Pending</a>
-    </div>
-    <div class="col-md-3">
-        <a class="btn btn-secondary btn-block btn-round" id="old-button" (click)="old_active = !old_active"
-           [attr.aria-expanded]="!old_active" aria-controls="old-fragment">Old</a>
-    </div>
-    <div class="col-md-1"></div>
-
+    <ul class="tabs" materialize="tabs" style="background-color: transparent; color: white;">
+        <li class="tab col s4"><a class="active" href="#active-fragment">Active</a></li>
+        <li class="tab col s4"><a href="#pending-fragment">Pending</a></li>
+        <li class="tab col s4"><a href="#old-fragment">Old</a></li>
+    </ul>
 </div>
 
-<div id="active-fragment" *ngIf="active_active">
-    <div class="grid" *ngIf="activePasses?.length > 0; else no_active">
-        <div *ngFor="let p of activePasses"><pass-card [pass]="p"></pass-card></div>
+<div id="active-fragment">
+    <div class="row" style="margin-left: 10%; margin-right: 10%;" *ngIf="activePasses?.length > 0; else no_pass">
+        <div *ngFor="let p of activePasses">
+            <pass-card [pass]="p"></pass-card>
+        </div>
     </div>
-    <ng-template #no_active><h1 class="pass-type text-center mt-5">No active passes. Send your teacher a request for one
-        using the plus symbol
-        above. The passes will display in the "pending" section until your teacher approves the pass.</h1></ng-template>
 </div>
 
-<div id="pending-fragment" *ngIf="pending_active">
-    <div class="grid" *ngIf="pendingPasses?.length > 0; else no_pending">
-        <div *ngFor="let p of pendingPasses"><pass-card [pass]="p"></pass-card></div>
+<div id="pending-fragment">
+    <div class="row" style="margin-left: 10%; margin-right: 10%;" *ngIf="pendingPasses?.length > 0; else no_pass">
+        <div *ngFor="let p of pendingPasses">
+            <pass-card [pass]="p"></pass-card>
+        </div>
     </div>
-    <ng-template #no_pending><h1 class="pass-type text-center mt-5">No pending passes. Send your teacher a request for
+</div>
+
+<div id="old-fragment">
+    <div class="row" style="margin-left: 10%; margin-right: 10%;" *ngIf="oldPasses?.length > 0; else no_pass">
+        <div *ngFor="let p of oldPasses">
+            <pass-card [pass]="p"></pass-card>
+        </div>
+    </div>
+</div>
+
+<ng-template class="col s12 " #no_pass>
+    <i class="large material-icons" style="display:block; color:white; text-align: center;">
+        error_outline
+    </i>
+    <h3 class="pass-type text-center mt-5" style="color:white;">No passes. Send your teacher a request for
         one
         using the plus symbol
-        above. The passes will display in the "pending" section until your teacher approves the pass.</h1></ng-template>
-</div>
-
-<div id="old-fragment" *ngIf="old_active">
-    <div class="grid" *ngIf="oldPasses?.length > 0; else no_old">
-        <div *ngFor="let p of oldPasses"><pass-card [pass]="p"></pass-card></div>
-    </div>
-    <ng-template #no_old><h1 class="pass-type text-center mt-5">No pending passes. Send your teacher a request for
-        one
-        using the plus symbol
-        above. The passes will display in the "pending" section until your teacher approves the pass.</h1></ng-template>
-</div>
+        above. The passes will display in the "pending" section until your teacher approves the pass.</h3></ng-template>
 </body>
-
-<script src="../static/tabs.js"></script>
-<script>
-    $(document).ready(function () {
-        var expanded = false;
-        $('.expand').click(function () {
-            if (expanded) {
-                $(this).css({
-                    'transform': 'rotate(' + 0 + 'deg)',
-                    'transition': 'transform 0.3s ease',
-                    'transform-origin': '50% 60%'
-                });
-            } else {
-                $(this).css({
-                    'transform': 'rotate(' + 135 + 'deg)',
-                    'transition': 'transform 0.3s ease',
-                    'transform-origin': '50% 60%'
-                });
-            }
-            expanded = !expanded;
-        });
-    });
-</script>

@@ -1,26 +1,29 @@
-<div class="pass-card card">
-    <div class="card-body">
-        <h5 class="card-title"><i
-                class="fas fa-hourglass"></i> {{ p.destination }}</h5>
+<div class="pass-card card col s4" style="margin: 20px;">
+    <div class="card-content black-text">
+        <ul>
+            <li><h5 class="card-title"><i
+                    class="fas fa-hourglass"></i> {{ p.destination }}</h5></li>
+            <li><h6 *ngIf="date !== undefined">{{ date|date:"EEEE, MMMM d" }}</h6></li>
+            <li><h6>
+                {{ startTimeRequested|date:"shortTime" }}
+                - {{ endTimeRequested|date:"shortTime" }}
+            </h6></li>
+            <li><p>{{ p.description }}</p></li>
+        </ul>
 
-        <h6 class="card-subtitle mb-2 text-muted" *ngIf="date !== undefined">{{ date|date:"EEEE, MMMM d" }}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">
-            {{ startTimeRequested|date:"shortTime" }}
-            - {{ endTimeRequested|date:"shortTime" }}
-        </h6>
-        <p class="card-text">{{ p.description }}</p>
+        <ul class="list-group list-group-flush">
+            <li *ngIf="timeLeftOrigin !== undefined" class="list-group-item">Time
+                Left: {{ timeLeftOrigin| date:'shortTime' }}</li>
+            <li *ngIf="timeArrivedDestination !== undefined" class="list-group-item">Time
+                Arrived: {{ timeArrivedDestination| date:'shortTime' }}</li>
+            <!--<li *ngIf="pass.timeLeftOrigin != 'null' && pass.type != 'SRTPass'" class="list-group-item">Time
+                Left: {{ pass.timeLeftOrigin|default:"N/A" }}</li>
+            <li *ngIf="pass.timeArrivedDestination != 'null' && pass.type != 'SRTPass'" class="list-group-item">Time
+                Arrived: {{ pass.timeArrivedDestination|default:"N/A" }}</li>
+            <li *ngIf="pass.type == 'SRTPass'" class="list-group-item">{{ pass.srtpass.sessionStr }}</li>-->
+            <li class="list-group-item">Origin
+                Teacher: {{ p.originTeacher_info.first_name }} {{ p.originTeacher_info.last_name }}</li>
+        </ul>
+        <!--<a class="waves-effect waves-teal btn-flat right"><i class="small material-icons">edit</i></a>-->
     </div>
-    <ul class="list-group list-group-flush">
-        <li *ngIf="timeLeftOrigin !== undefined" class="list-group-item">Time
-            Left: {{ timeLeftOrigin| date:'shortTime' }}</li>
-        <li *ngIf="timeArrivedDestination !== undefined" class="list-group-item">Time
-            Arrived: {{ timeArrivedDestination| date:'shortTime' }}</li>
-        <!--<li *ngIf="pass.timeLeftOrigin != 'null' && pass.type != 'SRTPass'" class="list-group-item">Time
-            Left: {{ pass.timeLeftOrigin|default:"N/A" }}</li>
-        <li *ngIf="pass.timeArrivedDestination != 'null' && pass.type != 'SRTPass'" class="list-group-item">Time
-            Arrived: {{ pass.timeArrivedDestination|default:"N/A" }}</li>
-        <li *ngIf="pass.type == 'SRTPass'" class="list-group-item">{{ pass.srtpass.sessionStr }}</li>-->
-        <li class="list-group-item">Origin
-            Teacher: {{ p.originTeacher_info.first_name }} {{ p.originTeacher_info.last_name }}</li>
-    </ul>
 </div>
