@@ -15,8 +15,8 @@ import {PassCardComponent} from './pass-card/pass-card.component';
 import {PassTypeFilter} from "./filters/PassTypeFilter";
 import {PassFormComponent} from './pass-form/pass-form.component';
 import {StudentGuard} from "./routing-gaurds/StudentGuard";
+import {MaterializeModule} from "angular2-materialize";
 
-//import { MaterializeModule } from "angular2-materialize";
 @NgModule({
     declarations: [
         AppComponent,
@@ -33,7 +33,7 @@ import {StudentGuard} from "./routing-gaurds/StudentGuard";
         HttpClientModule,
         ReactiveFormsModule,
         RoutingModule,
-        //MaterializeModule
+        MaterializeModule
     ],
     providers: [
         AuthenticationService,

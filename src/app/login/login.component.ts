@@ -30,7 +30,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // Go to library if they are logged in
     if (this.authService.loggedIn()) {
-      this.router.navigate(['admin-dash']);
+      var type = localStorage.getItem('user_type');
+      if(type == 'Admin') {
+        this.router.navigate(['admin-dash']);
+      } else if (type == 'Student') {
+        this.router.navigate(['student-dash']);
+      }
     }
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -71,6 +76,13 @@ export class LoginComponent implements OnInit {
             .subscribe(user => {
               console.log('all of the login stuff is complete', user.type, user);
               localStorage.setItem('user_type', user.type);
+
+              var type = user.type;
+              if(type == 'Admin') {
+                this.router.navigate(['admin-dash']);
+              } else if (type == 'Student') {
+                this.router.navigate(['student-dash']);
+              }
             });
         });
   }
