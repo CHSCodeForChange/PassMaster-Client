@@ -78,9 +78,9 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('user_type', user.type);
 
               var type = user.type;
-              if(type == 'Admin') {
+              if(type == '3') {
                 this.router.navigate(['admin-dash']);
-              } else if (type == 'Student') {
+              } else if (type == '1') {
                 this.router.navigate(['student-dash']);
               }
             });

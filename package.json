@@ -26,7 +26,6 @@
     "jquery": "^3.3.1",
     "materialize-css": "^0.100.2",
     "moment": "^2.24.0",
-    "ng-bootstrap": "^1.6.3",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
