@@ -1,139 +1,88 @@
-
 <div class="card card-body card-form" style="width: 100%;">
-  <div class="row mb-4">
-    <div class="col-md-4">
-      <button class="btn btn-primary btn-block" id="set_type_teacher">Teacher</button>
+    <div class="row" style="margin: 3%;">
+        <ul class="tabs" materialize="tabs" style="background-color: transparent; color: white;">
+            <li class="tab col s4"><a class="active" (click)="pass.type = 'TeacherPass'">Teacher</a></li>
+            <li class="tab col s4"><a (click)="pass.type = 'LocationPass'">Location</a></li>
+            <li class="tab col s4"><a (click)="pass.type = 'SRTPass'">SRT</a></li>
+        </ul>
     </div>
-    <div class="col-md-4">
-      <button class="btn btn-secondary btn-block" id="set_type_destination">Location</button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-secondary btn-block" id="set_type_srt">SRT</button>
-    </div>
-  </div>
-  <form method="post">
-    <div>{{ pass.type }}</div>
-    <div class="row">
-      <div class="col-md-6">
-        <div id="id_destinationTeacher" *ngIf="pass.type == 'TeacherPass'">
-          <div class="form-label" id="destinationTeacherLabel">Destination Teacher</div>
-          <div>
-            <select class="form-control" id="id_destinationTeacher"
-                    required
-                    [(ngModel)]="pass.destination" name="destination">
-                <option *ngFor="let t of teachers" [value]="t.username">{{t.username}}</option>
+
+    <form method="post">
+        <div class="row">
+            <select class="col s6" name="originTeacher" [(ngModel)]="pass.originTeacher"
+                    materialize="material_select"
+                    [materializeSelectOptions]="selectOptions" [disabled]="isDisabled?true:null">
+                <option value="" disabled selected>Choose Origin Teacher</option>
+                <option *ngFor="let option of teachers"
+                        [value]="option.username">{{option.first_name}} {{option.last_name}}</option>
             </select>
-          </div>
-        </div>
-        <div id="id_location" *ngIf="pass.type == 'LocationPass'">
-          <div class="form-label" id="locationLabel">Location Label</div>
-          <div>
-            <select class="form-control" id="id_location"
-                    required
-                    [(ngModel)]="pass.destination" name="destination">
-              <option *ngFor="let l of locations" [value]="l">{{l}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-label" id="originTeacherLabel">Origin Teacher</div>
-        <div>
-          <select class="form-control" id="id_originTeacher"
-                  required
-                  [(ngModel)]="pass.originTeacher" name="originTeacher">
-            <option *ngFor="let t of teachers" [value]="t.username">{{t.username}}</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-label">Date</div>
-        <input type="date" name="date" class="form-control" id="id_date" [(ngModel)]="pass.date" required>
-      </div>
 
-      <div *ngIf="pass.type == 'LocationPass' && pass.type == 'TeacherPass'">
-        <div class="col-md-4" id="start-time">
-          <div class="form-label">Start Time</div>
-          <input type="time" name="start" class="form-control" id="id_start" [(ngModel)]="pass.startTimeRequested" required>
+            <div id="id_destinationTeacher" *ngIf="pass.type == 'TeacherPass'">
+                <select class="col s6" name="destination" [(ngModel)]="pass.destination"
+                        materialize="material_select"
+                        [materializeSelectOptions]="selectOptions" [disabled]="isDisabled?true:null">
+                    <option value="" disabled selected>Choose Destination Teacher</option>
+                    <option *ngFor="let option of teachers"
+                            [value]="option.username">{{option.first_name}} {{option.last_name}}</option>
+                </select>
+            </div>
+            <div id="id_location" *ngIf="pass.type == 'LocationPass'">
+                <select class="col s6" name="destination" [(ngModel)]="pass.destination"
+                        materialize="material_select"
+                        [materializeSelectOptions]="selectOptions" [disabled]="isDisabled?true:null">
+                    <option value="" disabled selected>Choose Destination Location</option>
+                    <option *ngFor="let option of locations"
+                            [value]="option">{{option}}</option>
+                </select>
+            </div>
         </div>
-        <div class="col-md-4" id="end-time">
-          <div class="form-label">End Time</div>
-          <input type="time" name="end" class="form-control" id="id_end" [(ngModel)]="pass.endTimeRequested" required>
+        <div class="row">
+            <div class="col s4">
+                <div class="form-label">Date</div>
+                <input id="id_date" name="date" [(ngModel)]="pass.date"
+                       materialize="pickadate"
+                       [materializeActions]="dateActions"
+                       [materializeParams]="[{format: 'dd/mm/yyyy'}]"
+                       type="text"/>
+            </div>
+
+            <div class="col s4" *ngIf="pass.type == 'LocationPass' || pass.type == 'TeacherPass'" id="start-time">
+                <div class="form-label">Start Time</div>
+                <input id="id_start" name="start" [(ngModel)]="pass.startTimeRequested"
+                       materialize="pickatime"
+                       [materializeActions]="timeActions"
+                       [materializeParams]="[{twelvehour: true}]"
+                       placeholder="00:00" class="validate" type="text">
+            </div>
+
+            <div class="col s4" *ngIf="pass.type == 'LocationPass' || pass.type == 'TeacherPass'" id="end-time">
+                <div class="form-label">End Time</div>
+                <input id="id_end" name="end" [(ngModel)]="pass.endTimeRequested"
+                       materialize="pickatime"
+                       [materializeActions]="timeActions"
+                       [materializeParams]="[{twelvehour: true}]"
+                       placeholder="00:00" class="validate" type="text">
+            </div>
+
+            <div class="col s8" *ngIf="pass.type == 'SRTPass'">
+                <input type="checkbox" id="test5" [checked]="isTest5Checked" [disabled]="isDisabled?true:null"/>
+                <label for="test5">1</label>
+                <input type="checkbox" id="test6" name="test6" [(ngModel)]="isTest6Checked"
+                       [disabled]="isDisabled?true:null"/>
+                <label for="test6">2</label>
+            </div>
         </div>
-      </div>
 
-      <div class="col-md-8" *ngIf="pass.type == 'SRTPass'">
-        <div class="form-label" id="sessionLabel">Session</div>
-        <div> {{ request_form.session }} </div>
-      </div>
-    </div>
+        <div class="row">
+            <div class="input-field col s12">
+            <textarea id="reason" class="materialize-textarea" materialize="characterCounter" [attr.length]="maxLength"
+                      [disabled]="isDisabled?true:null"></textarea>
+                <label for="reason">Description</label>
+            </div>
+        </div>
 
-    <div class="form-label">Description</div>
-    <textarea name="reason" cols="40" rows="3" type="text" class="form-control" maxlength="240" id="id_reason" [(ngModel)]="pass.description"></textarea>
-
-    <div class="center mt-3">
-      <button class="btn btn-info btn-block" type="submit">Create</button>
-    </div>
-  </form>
+        <div class="row">
+            <button class="btn btn-info btn-block" type="submit">Create</button>
+        </div>
+    </form>
 </div>
-
-<script>
-  $('#set_type_teacher').click(function(e) {
-    $('#id_pass_type').val("1");
-    $('#select2-id_destinationTeacher-container').show();
-    $('#id_destinationTeacher').show();
-    $('#destinationTeacherLabel').show();
-    $('#locationLabel').hide();
-    $('#start-time').show();
-    $('#end-time').show();
-    $('#id_location').hide();
-    $('#id_session').hide();
-    $('#sessionLabel').hide();
-    $(this).removeClass('btn-secondary').addClass('btn-primary');
-    $('#set_type_destination').removeClass('btn-primary').addClass('btn-secondary');
-    $('#set_type_srt').removeClass('btn-primary').addClass('btn-secondary');
-  });
-  $('#set_type_destination').click(function(e) {
-    $('#id_pass_type').val("2");
-    $('#select2-id_destinationTeacher-container').hide();
-    $('#id_destinationTeacher').hide();
-    $('#destinationTeacherLabel').hide();
-    $('#locationLabel').show();
-    $('#start-time').show();
-    $('#end-time').show();
-    $('#id_location').show();
-    $('#id_session').hide();
-    $('#sessionLabel').hide();
-    $(this).removeClass('btn-secondary').addClass('btn-primary');
-    $('#set_type_teacher').removeClass('btn-primary').addClass('btn-secondary');
-    $('#set_type_srt').removeClass('btn-primary').addClass('btn-secondary');
-  });
-  $('#set_type_srt').click(function(e) {
-    $('#id_pass_type').val("3");
-    $('#select2-id_destinationTeacher-container').show();
-    $('#id_destinationTeacher').show();
-    $('#destinationTeacherLabel').show();
-    $('#locationLabel').hide();
-    $('#start-time').hide();
-    $('#end-time').hide();
-    $('#id_location').hide();
-    $('#id_session').show();
-    $('#sessionLabel').show();
-    $(this).removeClass('btn-secondary').addClass('btn-primary');
-    $('#set_type_teacher').removeClass('btn-primary').addClass('btn-secondary');
-    $('#set_type_destination').removeClass('btn-primary').addClass('btn-secondary');
-  });
-  $(document).ready(function() {
-    var d = new Date();
-    //{# (d.getMinutes()<10?'0':'') adds a leading zero if the minutes are less than ten #}
-    $('#id_start').val(d.getHours()+":"+(d.getMinutes()<10?'0':'')+d.getMinutes());
-    $('#id_end').val(d.getHours()+1+":"+(d.getMinutes()<10?'0':'')+d.getMinutes());
-    // {# Hide things that should be hidden initially #}
-    $('#id_location').hide();
-    $('#locationLabel').hide();
-    $('#id_session').hide();
-    $('#sessionLabel').hide();
-  });
-</script>
