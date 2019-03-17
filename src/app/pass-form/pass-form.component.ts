@@ -20,11 +20,13 @@ export class PassFormComponent implements OnInit {
     timeActions = new EventEmitter<string|MaterializeAction>();
 
     onSubmit() {
+        console.log('the form has been submitted');
         this.submitted = true;
     }
 
     constructor(private api: PassmasterService) {
         console.log(this.pass);
+        api.submitPass(this.pass);
     }
 
     ngOnInit() {

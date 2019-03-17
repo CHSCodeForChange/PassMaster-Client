@@ -7,7 +7,7 @@
         </ul>
     </div>
 
-    <form method="post">
+    <form (ngSubmit)="onSubmit()">
         <div class="row">
             <select class="col s6" name="originTeacher" [(ngModel)]="pass.originTeacher"
                     materialize="material_select"

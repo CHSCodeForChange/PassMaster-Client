@@ -10,6 +10,7 @@ import {StudentGuard} from "./routing-gaurds/StudentGuard";
 const routes: Routes = [
   //{ path: '', redirectTo: 'login'}, //this is just a default will change later
   { path: 'admin-dash', component: AdminDashComponent, canActivate: [LoginGuard, AdministratorGuard] },
+  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'student-dash', component: StudentDashComponent, canActivate: [LoginGuard, StudentGuard] },
 
